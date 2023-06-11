@@ -1,6 +1,21 @@
 import React from 'react'
+import {useNavigate} from 'react-router-dom'
 
 export default function Registration() {
+  const navigate = useNavigate();
+  const handleSubmit=(event)=>{
+    event.preventDefault();
+    var don = document.getElementById("don");
+    var pat = document.getElementById("pat");
+    var ngo = document.getElementById("ngo");
+     if(don.checked){
+        navigate('/Donor')
+    }
+    if(pat.checked){
+      navigate('/Patient')
+    }
+    
+  }
   return (
     <div>
         <div>
@@ -33,10 +48,12 @@ export default function Registration() {
           <label style={{ paddingRight: '28px' }}>Password</label>
           <input type="password" placeholder="Enter password" id="pwd" /><br /><br />
           <label>Who are you? Which Stakeholder?</label><br /><br />
-          <label>Donor</label> <input type="radio" name="stakeholder" value="Donor" />
-          <label>Patient</label> <input type="radio" name="stakeholder" value="Patient" />
-          <label>NGO</label> <input type="radio" name="stakeholder" value="NGO" />
+          <label>Donor</label> <input type="radio" name="stakeholder" value="Donor" id="don" />
+          <label>Patient</label> <input type="radio" name="stakeholder" value="Patient" id="pat" />
+          <label>NGO</label> <input type="radio" name="stakeholder" value="NGO" id="ngo"/>
         </form>
+        <br></br>
+        <input type="submit" value="Register" onClick={handleSubmit}/>
       </div>
     </div>
   )

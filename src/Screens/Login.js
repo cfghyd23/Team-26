@@ -1,6 +1,23 @@
 import React from 'react'
 
-export default function Login() {
+import { useNavigate} from 'react-router-dom';
+
+const Login = () => {
+  
+  const navigate = useNavigate();
+
+  const handleSubmit1 = (event) => {
+    event.preventDefault();
+    const don = document.getElementById('don');
+    const pat = document.getElementById('pat');
+   
+    if (don.checked) {
+      navigate('/Donor');
+    }
+    if (pat.checked) {
+      navigate('/Patient');
+    }
+  };
     return (
         <div>
             <div>
@@ -29,16 +46,17 @@ export default function Login() {
                     <label style={{ paddingRight: '148px' }}>Password</label>
                     <input type="text" placeholder="Enter password" id="pwd" pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number, one lowercase letter, one uppercase letter, and be at least 8 characters long" /><br /><br />
                     <label>Who are you? Which Stakeholder?</label><br /><br />
-                    <label>Donor</label> <input type="radio" name="stakeholder" value="Donor" />
-                    <label>Patient</label> <input type="radio" name="stakeholder" value="Patient" />
+                    <label>Donor</label> <input type="radio" name="stakeholder" value="Donor" id="don"/>
+                    <label>Patient</label> <input type="radio" name="stakeholder" value="Patient" id="pat"/>
                     <label>NGO</label> <input type="radio" name="stakeholder" value="NGO" />
                     <div className="captcha-container">
                         <div className="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
                     </div>
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" onClick={handleSubmit1}/>
                 </form>
             </div>
 
         </div>
-    )
-}
+    );
+};
+export default Login
